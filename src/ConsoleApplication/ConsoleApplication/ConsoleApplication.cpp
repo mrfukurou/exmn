@@ -22,20 +22,24 @@ void sort(Subject* mas, int size)
 	Subject mid;
 	mid.semester = mas[size / 2].semester;
 	do {
-		while (mas[i].semester < mid.semester) {
-			i++;
-		}
-		while (mas[j].semester > mid.semester) {
-			j--;
-		}
-		if (i <= j) {
+		while (mas[i].semester < mid.semester) 
+		{i++;}
+		while (mas[j].semester > mid.semester)
+		{j--;}
+		if (i <= j) 
+		{
 			Subject tmp = mas[i];
-			if (mas[i].semester == mas[j].semester) {
-				if (mas[i].name > mas[j].name) {
-					tmp = mas[i]; mas[i] = mas[j]; mas[j] = tmp;
+			if (mas[i].semester == mas[j].semester)
+			{
+				if (mas[i].name > mas[j].name)
+				{
+					tmp = mas[i];
+					mas[i] = mas[j];
+					mas[j] = tmp;
 				}
 			}
-			else {
+			else 
+			{
 				Subject tmp = mas[i];
 				mas[i] = mas[j];
 				mas[j] = tmp;
@@ -43,13 +47,29 @@ void sort(Subject* mas, int size)
 			i++;
 			j--;
 		}
-	} while (i <= j);
-
+	} 
+	while (i <= j);
 	if (j > 0) {
 		sort(mas, j + 1);
 	}
 	if (i < size) {
 		sort(&mas[i], size - i);
+	}
+}
+
+void record(Subject* mas, int num)
+{
+	ofstream out;
+	cout << "Введите путь, куда необходимо записать данные: ";
+	string link;
+	cin >> link;
+	out.open(link);
+	if (out.is_open())
+	{
+		for (int i = 0; i < num; i++)
+		{
+			out << "Название: " << mas[i].name << "\nФамилия преподавателя: " << mas[i].lastname << "\nСеместр: " << mas[i].semester << endl;
+		}
 	}
 }
 
@@ -87,9 +107,11 @@ int main()
 			cin >> Plan[i].semester;
 			cout << endl;
 		}
-
+		cout << "После сортировки:" << endl;
 		sort(Plan, num);
 		output(Plan, num);
+		record(Plan, num);
 	}
 	catch (int a) { if (a == 1) cout << "Введено некoрректное количество студентов"; }
+	return 0;
 }
