@@ -8,7 +8,8 @@
 
 using namespace std;
 
-struct Subject {
+struct Subject 
+{
 	string name;
 	string lastname;
 	int semester;
@@ -94,14 +95,13 @@ int main()
 		if(num<=0)
 		throw 1;
 
-
 		Subject* Plan = new Subject[num];
 
 		for (int i = 0; i < num; i++)
 		{
 			cout << "Введите название: ";
 			cin >> Plan[i].name;
-			cout << "Введите фамилию: ";
+			cout << "Введите фамилию преподавателя: ";
 			cin >> Plan[i].lastname;
 			cout << "Введите семестр: ";
 			cin >> Plan[i].semester;
@@ -112,6 +112,8 @@ int main()
 		output(Plan, num);
 		record(Plan, num);
 	}
-	catch (int a) { if (a == 1) cout << "Введено некoрректное количество студентов"; }
+	catch (int a) { if (a == 1) cout << "Введено некoрректное количество элементов"; }
+
+	system("pause");
 	return 0;
 }
