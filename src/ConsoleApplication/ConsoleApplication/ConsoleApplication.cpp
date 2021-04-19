@@ -105,6 +105,8 @@ int main()
 			cin >> Plan[i].lastname;
 			cout << "Введите семестр: ";
 			cin >> Plan[i].semester;
+			if (!cin)
+				throw 2;
 			cout << endl;
 		}
 		cout << "После сортировки:" << endl;
@@ -112,7 +114,11 @@ int main()
 		output(Plan, num);
 		record(Plan, num);
 	}
-	catch (int a) { if (a == 1) cout << "Введено некoрректное количество элементов"; }
+	catch (int a)
+	{ 
+	if (a == 1) cout << "Введено некoрректное количество элементов"<<endl;
+	if (a == 2) cout << "Номер семестра введен некорректно" << endl;
+	}
 
 	system("pause");
 	return 0;
