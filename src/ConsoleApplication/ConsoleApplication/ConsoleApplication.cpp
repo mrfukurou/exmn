@@ -5,7 +5,15 @@
 
 using namespace std;
 
+struct Subject {
+	string name;
+	string Lastname;
+	int semester;
+};
+
+void sort(){}
+
 int main()
 {
-    cout << "Hello World!";
+	
 }
