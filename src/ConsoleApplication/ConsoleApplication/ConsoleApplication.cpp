@@ -4,6 +4,7 @@
 #include <iostream>
 #include <locale.h>
 #include <windows.h>
+#include <fstream>
 
 using namespace std;
 
@@ -30,11 +31,8 @@ void sort(Subject* mas, int size)
 		if (i <= j) {
 			Subject tmp = mas[i];
 			if (mas[i].semester == mas[j].semester) {
-				if (mas[i].name > mas[j].name)
-				{
-					tmp = mas[i];
-					mas[i] = mas[j];
-					mas[j] = tmp;
+				if (mas[i].name > mas[j].name) {
+					tmp = mas[i]; mas[i] = mas[j]; mas[j] = tmp;
 				}
 			}
 			else {
@@ -45,8 +43,8 @@ void sort(Subject* mas, int size)
 			i++;
 			j--;
 		}
-	} 
-	while (i <= j);
+	} while (i <= j);
+
 	if (j > 0) {
 		sort(mas, j + 1);
 	}
@@ -73,24 +71,25 @@ int main()
 		int num;
 		cout << "Введите количество элементов в массиве: ";
 		cin >> num;
+		if(num<=0)
 		throw 1;
-		if (num < 0) {
-			Subject* Plan = new Subject[num];
 
-			for (int i = 0; i < num; i++)
-			{
-				cout << "Введите название: ";
-				cin >> Plan[i].name;
-				cout << "Введите фамилию: ";
-				cin >> Plan[i].lastname;
-				cout << "Введите семестр: ";
-				cin >> Plan[i].semester;
-				cout << endl;
-			}
-			sort(Plan, num);
-			output(Plan, num);
+
+		Subject* Plan = new Subject[num];
+
+		for (int i = 0; i < num; i++)
+		{
+			cout << "Введите название: ";
+			cin >> Plan[i].name;
+			cout << "Введите фамилию: ";
+			cin >> Plan[i].lastname;
+			cout << "Введите семестр: ";
+			cin >> Plan[i].semester;
+			cout << endl;
 		}
+
+		sort(Plan, num);
+		output(Plan, num);
 	}
-	catch(int a)
-	{ if (a == 1) cout << "Введено некoрректное количество элементов" << endl; }
+	catch (int a) { if (a == 1) cout << "Введено некoрректное количество студентов"; }
 }
